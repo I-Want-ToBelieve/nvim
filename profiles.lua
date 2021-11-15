@@ -26,12 +26,40 @@ local profiles = {
 
 	More in-depth information can be found in cheovim's README on GitHub.
 	--]]
-	my_config = { "~/.config/nvim.bak", {
+
+
+	-- @see https://github.com/NTBBloodbath/cheovim#wrench-configuration
+	default = {
+		"/home/backtolife/git.workspace/lua.workspace/zaza",
+		{
+			url = false,
+			setup = function() end,
+			config = "PackerSync",
 			plugins = "packer",
-			preconfigure = "packer",
-		}
+			preconfigure = "packer:start:master",
+		},
+	},
+
+	-- @see https://github.com/NTBBloodbath/cheovim#wrench-configuration
+	vscode = {
+		"/home/backtolife/git.workspace/lua.workspace/zaza",
+		{
+			url = false,
+			setup = function() end,
+			config = "PackerSync",
+			plugins = "packer",
+			preconfigure = "packer:start:master",
+		},
 	},
 }
 
+local get_profile_key = function()
+	if vim.g.vscode == 1 then
+		return "vscode"
+	end
+
+	return "default"
+end
+
 -- return <name_of_config>, <list_of_profiles>
-return "my_config", profiles
+return "default", profiles
